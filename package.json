@@ -1,0 +1,25 @@
+{
+  "name": "money-tracker-ngxs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "watch:client": "cd client && npm start",
+    "watch:server": "cd server && npm run start:dev",
+    "start": "concurrently npm:watch:*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sandb0x4477/money-tracker-ngxs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sandb0x4477/money-tracker-ngxs/issues"
+  },
+  "homepage": "https://github.com/sandb0x4477/money-tracker-ngxs#readme",
+  "dependencies": {
+    "concurrently": "^5.3.0"
+  }
+}

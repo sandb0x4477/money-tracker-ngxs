@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="end">
+      <ion-button (click)="dismissModal()">
+        <ion-icon name="close" color="light"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      {{ title }}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="outer-content ion-padding">
+  <ion-item>
+    <ion-label position="floating">Name *</ion-label>
+    <ion-input #nameInput [(ngModel)]="name" type="text" required></ion-input>
+  </ion-item>
+
+  <ng-container *ngIf="flag === 'add' && type === 'category'">
+    <ion-radio-group [(ngModel)]="incomeExpense">
+      <ion-item lines="full" style="margin-top: 12px;">
+        <ion-label>Expense</ion-label>
+        <ion-radio slot="end" value="Expense" name="type"></ion-radio>
+      </ion-item>
+
+      <ion-item lines="full">
+        <ion-label>Income</ion-label>
+        <ion-radio slot="end" value="Income" name="type"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </ng-container>
+
+  <br />
+  <ion-grid>
+    <ion-row>
+      <ion-col class="ion-text-center">
+        <ion-button
+          class="btn-larger"
+          expand="block"
+          strong
+          fill="outline"
+          type="submit"
+          color="secondary"
+          (click)="onSubmit()"
+          [disabled]="submitDisabled()"
+          >Submit</ion-button
+        >
+      </ion-col>
+    </ion-row>
+    <ion-row style="margin-top: 10px;" class="ion-justify-content-between">
+      <ion-col class="ion-text-center">
+        <ion-button expand="block" fill="outline" color="medium" (click)="dismissModal()">Cancel</ion-button>
+      </ion-col>
+      <ion-col class="ion-text-center" *ngIf="flag === 'edit'">
+        <ion-button expand="block" fill="outline" color="danger" (click)="presentAlertConfirm()"
+          >Delete</ion-button
+        >
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

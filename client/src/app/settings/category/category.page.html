@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon  slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Main Categories</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button *ngIf="!reorderMode" (click)="switchReorderMode()">
+        <ion-icon slot="icon-only" name="swap-vertical"></ion-icon>
+      </ion-button>
+      <ion-button *ngIf="reorderMode" (click)="switchReorderMode()">
+        <ion-icon slot="icon-only" name="pencil"></ion-icon>
+      </ion-button>
+      <ion-button (click)="addNewInModal()">
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item-divider>
+      <ion-label>
+        Expense
+      </ion-label>
+    </ion-item-divider>
+
+    <!-- ! EXPENSE -->
+    <ng-container *ngIf="catsExpense$ | async as catsExpense">
+      <ion-reorder-group (ionItemReorder)="doReorder($event, catsExpense)" [disabled]="!reorderMode">
+        <ng-container *ngFor="let item of catsExpense; let i=index">
+          <ion-item detail lines="full" button>
+            <ion-label [routerLink]="['sub', item.id]">
+              {{item.name}} <span class="sub-count">({{ item.subCount}})</span>
+            </ion-label>
+            <ion-buttons>
+              <ion-button class="btn-icon" *ngIf="!reorderMode" (click)="editInModal(item)">
+                <ion-icon slot="icon-only" name="pencil"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+            <ion-reorder slot="end"></ion-reorder>
+          </ion-item>
+        </ng-container>
+      </ion-reorder-group>
+    </ng-container>
+
+    <ion-item-divider style="margin-top: 12px;">
+      <ion-label>
+        Income
+      </ion-label>
+    </ion-item-divider>
+
+    <!-- ! INCOME -->
+    <ng-container *ngIf="catsIncome$ | async as catsIncome">
+      <ion-reorder-group (ionItemReorder)="doReorder($event, catsIncome)" [disabled]="!reorderMode">
+        <ng-container *ngFor="let item of catsIncome; let i=index">
+          <ion-item detail lines="full" button>
+            <ion-label [routerLink]="['sub', item.id]">
+              {{item.name}} <span class="sub-count">({{ item.subCount}})</span>
+            </ion-label>
+            <ion-buttons>
+              <ion-button class="btn-icon" *ngIf="!reorderMode" (click)="editInModal(item)">
+                <ion-icon slot="icon-only" name="pencil"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+            <ion-reorder slot="end"></ion-reorder>
+          </ion-item>
+        </ng-container>
+      </ion-reorder-group>
+    </ng-container>
+  </ion-list>
+</ion-content>

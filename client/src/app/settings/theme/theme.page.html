@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-back-button defaultHref="app/settings"></ion-back-button>
+  </ion-buttons>
+    <ion-title>Theme</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="container">
+  <ng-container *ngFor="let item of themes">
+    <ion-item lines="full" button [style]="getBackground(item.background)" (click)="setTheme(item.value)" class="item">
+      <ion-label [style.color]="item.color">
+        {{item.name}}
+      </ion-label>
+    </ion-item>
+  </ng-container>
+</ion-content>

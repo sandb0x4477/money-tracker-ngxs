@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-
 import { Platform } from '@ionic/angular';
 
+import { ThemeSwitcherService } from './_services/theme-switcher.service';
 
 @Component({
   selector: 'app-root',
@@ -11,12 +11,14 @@ import { Platform } from '@ionic/angular';
 export class AppComponent {
   constructor(
     private platform: Platform,
+    private themeSwitcherService: ThemeSwitcherService,
   ) {
     this.initializeApp();
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
+      this.themeSwitcherService.loadTheme();
     });
   }
 }
