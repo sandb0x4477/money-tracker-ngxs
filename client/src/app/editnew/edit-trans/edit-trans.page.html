@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Edit Transaction</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ng-container *ngIf="activeTrans$ | async">
+
+    <!-- ? DATE PICKER -->
+    <ion-item lines="full" (click)="openDatePicker()" button>
+      <ion-label>Date</ion-label>
+      <ion-label class="ion-text-right">{{ trans.fullDate | date: 'dd MMM yyyy' }}</ion-label>
+    </ion-item>
+
+    <!-- ? CATEGORY MODAL -->
+    <ion-item lines="full" (click)="openCategories()" button>
+      <ion-label>Category</ion-label>
+      <ion-label class="ion-text-right">{{catFullName}}</ion-label>
+    </ion-item>
+
+    <!-- ? CALUCULATOR MODAL -->
+    <ion-item lines="full" (click)="openCalculator()" button>
+      <ion-label>Amount</ion-label>
+      <ion-label class="ion-text-right">{{ trans.amount | number: '1.2-2' }}</ion-label>
+    </ion-item>
+
+    <!-- ? MEMO -->
+    <ion-item lines="full">
+      <ion-label position="fixed">Content</ion-label>
+      <ion-input [(ngModel)]="trans.memo" class="ion-text-right"></ion-input>
+    </ion-item>
+
+    <br />
+
+    <ion-grid>
+      <ion-row>
+        <ion-col class="ion-text-center">
+          <ion-button class="btn-larger" expand="block" strong fill="outline" type="submit" color="secondary"
+          [disabled]="hasChanged()"
+                      (click)="onSubmit()"
+            >Submit</ion-button
+          >
+        </ion-col>
+      </ion-row>
+      <ion-row style="margin-top: 10px;" class="ion-justify-content-between">
+        <ion-col class="ion-text-center">
+          <ion-button expand="block" fill="outline" color="medium" (click)="goBack()">Cancel</ion-button>
+        </ion-col>
+        <ion-col class="ion-text-center">
+          <ion-button expand="block" fill="outline" color="danger" (click)="presentAlertConfirm()">Delete</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ng-container>
+</ion-content>

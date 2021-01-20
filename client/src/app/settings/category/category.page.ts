@@ -1,11 +1,17 @@
 import { Component, OnInit, ChangeDetectionStrategy, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IonReorderGroup, ModalController } from '@ionic/angular';
+import { Store, Select } from '@ngxs/store';
 
 import { CategoryModel } from '../../_common/app.models';
 import { EditAccCatPage } from '../../components/edit-acc-cat/edit-acc-cat.page';
-import { Store, Select } from '@ngxs/store';
-import { CategoryState, ADD_CATEGORY, UPDATE_CATEGORY, REMOVE_CATEGORY, REORDER_CATEGORIES } from '../../store';
+import {
+  CategoryState,
+  ADD_CATEGORY,
+  UPDATE_CATEGORY,
+  REMOVE_CATEGORY,
+  REORDER_CATEGORIES,
+} from '../../store';
 import { Observable } from 'rxjs';
 
 @Component({

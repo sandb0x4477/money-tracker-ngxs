@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/app/settings/category"></ion-back-button>
+    </ion-buttons>
+    <ng-container *ngIf="mainCategory$ | async as mainCategory">
+      <ion-title>{{ mainCategory.name}}</ion-title>
+    </ng-container>
+    <ion-buttons slot="primary">
+      <ion-button *ngIf="!reorderMode" (click)="switchReorderMode()">
+        <ion-icon slot="icon-only" name="swap-vertical"></ion-icon>
+      </ion-button>
+      <ion-button *ngIf="reorderMode" (click)="switchReorderMode()">
+        <ion-icon slot="icon-only" name="pencil"></ion-icon>
+      </ion-button>
+      <ion-button (click)="addNewInModal()">
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ng-container *ngIf="subCats$ | async as subCats">
+    <ion-reorder-group (ionItemReorder)="doReorder($event, subCats)" [disabled]="!reorderMode">
+      <ng-container *ngFor="let item of subCats; let i=index">
+        <ion-item lines="full">
+          <ion-label>
+            {{item.name}}
+          </ion-label>
+          <ion-buttons>
+            <ion-button class="btn-icon" *ngIf="!reorderMode" (click)="editInModal(item)">
+              <ion-icon slot="icon-only" name="pencil"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+          <ion-reorder slot="end"></ion-reorder>
+        </ion-item>
+      </ng-container>
+    </ion-reorder-group>
+  </ng-container>
+</ion-content>

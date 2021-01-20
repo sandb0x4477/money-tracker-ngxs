@@ -32,13 +32,12 @@ export class TransactionService {
     let result: Transaction;
     if (relations) {
       result = await this.transactionRepo.findOne({
-        where: {id},
-        relations: ['account', 'category', 'subCategory']
-      })
+        where: { id },
+        relations: ['category', 'subCategory'],
+      });
     } else {
       result = await this.transactionRepo.findOne(id);
     }
-
 
     if (!result) {
       throw new NotFoundException(`Transaction with id: ${id} not found`);
@@ -48,13 +47,14 @@ export class TransactionService {
   }
 
   /* ---------------------------- CREATE ---------------------------- */
-  async create(user:any, payload: Partial<Transaction>): Promise<Transaction> {
+  async create(user: any, payload: Partial<Transaction>): Promise<Transaction> {
     const result = this.transactionRepo.create(payload);
 
     await this.transactionRepo.save(result);
-    const transactionToReturn = await this.getById(result.id, true);
+    const transForPush = await this.getById(result.id, true);
 
-    await this.notificationService.pushNotificationToSubscribers(user, transactionToReturn)
+    // await this.notificationService.pushNotificationToSubscribers(user, transForPush);
+    const transactionToReturn = await this.getById(result.id);
 
     return transactionToReturn;
   }
@@ -142,6 +142,7 @@ export class TransactionService {
       return rObj;
     });
   }
+
   async getTransactionsByCategory(payload: {
     start: string;
     end: string;

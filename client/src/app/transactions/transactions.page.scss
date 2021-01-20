@@ -1,0 +1,28 @@
+ion-segment {
+  // --background: var(--ion-color-primary)
+  margin-top: 0.2em;
+}
+
+ion-segment-button {
+  font-size: 12px;
+  text-transform: none;
+  height: 36px;
+  letter-spacing: 0.02em;
+  min-height: 36px;
+}
+
+.button-has-icon-only.button-clear {
+  --padding-top: 12px;
+  --padding-end: 8px;
+  --padding-bottom: 12px;
+  --padding-start: 8px;
+  --border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  font-size: 12px;
+}
+
+ion-button.btn-select {
+  font-size: 14px;
+  text-transform: none;
+}

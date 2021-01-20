@@ -58,8 +58,8 @@ export class NotificationService {
   }
 
   async pushNotificationToSubscribers(user: any, payload: any) {
-    console.log('TC: NotificationService -> pushNotificationToSubscribers -> user', user);
-    console.log('TC: NotificationService -> pushNotificationToSubscribers -> payload', payload);
+    // console.log('TC: NotificationService -> pushNotificationToSubscribers -> user', user);
+    // console.log('TC: NotificationService -> pushNotificationToSubscribers -> payload', payload);
     const subscribers = await this.notificationRepo.find();
     if (!subscribers) {
       return;

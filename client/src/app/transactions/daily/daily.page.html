@@ -1,0 +1,41 @@
+<ion-content>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="secondary" (click)="newTrans()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ng-container *ngIf="transDaily$ | async as data">
+    <div class="inc-exp-total">
+      <div class="inc-exp-total-column">
+        <div class="inc-exp-total-column-text">
+          Income
+        </div>
+        <div class="inc-exp-total-column-number income">
+          {{data.totalIncome | number: '1.2-2' }}
+        </div>
+      </div>
+
+      <div class="inc-exp-total-column">
+        <div class="inc-exp-total-column-text">
+          Expenses
+        </div>
+        <div class="inc-exp-total-column-number expense">
+          {{data.totalExpense | number: '1.2-2' }}
+        </div>
+      </div>
+
+      <div class="inc-exp-total-column">
+        <div class="inc-exp-total-column-text">
+          Total
+        </div>
+        <div class="inc-exp-total-column-number">
+          {{data.totalIncome - data.totalExpense | number: '1.2-2' }}
+        </div>
+      </div>
+    </div>
+    <ng-container *ngFor="let day of data.dailyData">
+      <app-daily-trans [day]="day" (command)="editTrans($event)"></app-daily-trans>
+    </ng-container>
+  </ng-container>
+  <div class="dummy"></div>
+</ion-content>

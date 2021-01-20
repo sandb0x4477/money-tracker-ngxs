@@ -1,0 +1,25 @@
+#chartmonthly {
+  margin-top: 1rem;
+  // padding: 0.2rem;
+}
+
+.axis-x,
+.axis-y {
+  font-size: 0.64em;
+}
+
+.axis-y .tick line {
+  stroke: #e2e2e2;
+  opacity: 0.6;
+}
+
+rect.bar-expense {
+  fill: #fd5e49;
+  opacity: 0.9;
+}
+
+
+rect.bar-income {
+  fill: #019ee7;
+  opacity: 0.9;
+}

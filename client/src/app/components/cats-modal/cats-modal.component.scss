@@ -1,0 +1,49 @@
+ion-toolbar {
+  --min-height: 22px
+}
+
+ion-title {
+  font-size: 16px;
+  padding-inline-start: 16px;
+}
+
+ion-col {
+  padding: 0;
+}
+
+* ::-webkit-scrollbar {
+  display: none;
+}
+
+ion-item {
+  border-right: 1px solid #b1b1b1;
+}
+
+// .container {
+//   display: grid;
+//   grid-template-columns: 1fr 1fr;
+// }
+
+#left {
+  position: fixed;
+  box-sizing: content-box;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  overflow: auto;
+  overflow-y: scroll;
+}
+
+#right {
+  position: fixed;
+  box-sizing: content-box;
+  width: 100%;
+  height: 100%;
+  right: 0;
+  // overflow: auto;
+  overflow-y: scroll;
+}
+
+.dummy {
+  min-height: 48px;
+}

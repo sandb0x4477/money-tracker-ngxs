@@ -3,7 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { environment } from '../../environments/environment';
-import { AccountModel, CategoryModel } from '../_common/app.models';
+import { CategoryModel, TransactionModel, QueryModel, MonthlyStatsModel } from '../_common/app.models';
 
 const BASE_URL = environment.BASE_URL;
 
@@ -14,35 +14,7 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   /* ---------------------------------------------------------------- */
-  //!                             ACCOUNTS                            */
-  /* ---------------------------------------------------------------- */
-  /* ------------------------------ GET ----------------------------- */
-  getAccounts(): Observable<AccountModel[]> {
-    return this.http.get<AccountModel[]>(BASE_URL + '/account');
-  }
-
-  /* ------------------------------ ADD ----------------------------- */
-  addAccount(payload: Partial<AccountModel>): Observable<AccountModel> {
-    return this.http.post<AccountModel>(BASE_URL + '/account', payload);
-  }
-
-  /* ------------------------------ UPDATE ----------------------------- */
-  updateAccount(payload: Partial<AccountModel>): Observable<AccountModel> {
-    return this.http.put<AccountModel>(BASE_URL + `/account/${payload.id}/edit`, payload);
-  }
-
-  /* ------------------------------ REMOVE ----------------------------- */
-  removeAccount(id: number): Observable<AccountModel> {
-    return this.http.put<AccountModel>(BASE_URL + `/account/${id}/delete`, {});
-  }
-
-  /* ------------------------------ REORDER ----------------------------- */
-  reorderAccounts(payload: { moveFrom: number; moveTo: number }): Observable<Partial<AccountModel[]>> {
-    return this.http.post<Partial<AccountModel[]>>(BASE_URL + '/account/reorder', payload);
-  }
-
-  /* ---------------------------------------------------------------- */
-  //!                             CATEGORIES                                */
+  //!                             CATEGORIES                          */
   /* ---------------------------------------------------------------- */
   /* ------------------------------ GET ----------------------------- */
   getCategories(): Observable<CategoryModel[]> {
@@ -67,5 +39,37 @@ export class ApiService {
   /* ------------------------------ REORDER ----------------------------- */
   reorderCategories(payload: { moveFrom: number; moveTo: number }): Observable<CategoryModel[]> {
     return this.http.post<CategoryModel[]>(BASE_URL + '/category/reorder', payload);
+  }
+
+  /* ---------------------------------------------------------------- */
+  // !                           TRANSACTIONS                         */
+  /* ---------------------------------------------------------------- */
+  /* ------------------------------ GET ----------------------------- */
+  getTransactions(query: QueryModel): Observable<TransactionModel[]> {
+    const params = new HttpParams().set('start', query.start).set('end', query.end);
+    return this.http.get<TransactionModel[]>(BASE_URL + '/transaction', { params });
+  }
+
+  /* ------------------------------ ADD ----------------------------- */
+  addTransaction(payload: Partial<TransactionModel>) {
+    return this.http.post<TransactionModel>(BASE_URL + `/transaction`, payload);
+  }
+
+  /* ---------------------------- UPDATE ---------------------------- */
+  updateTransaction(payload: Partial<TransactionModel>): Observable<TransactionModel> {
+    return this.http.put<TransactionModel>(BASE_URL + `/transaction/${payload.id}/edit`, payload);
+  }
+
+  /* ---------------------------- DELETE ---------------------------- */
+  deleteTransaction(id: number): Observable<any> {
+    return this.http.delete<any>(BASE_URL + `/transaction/${id}`);
+  }
+
+  /* ------------------------- MONTHLY STATS ------------------------- */
+  getMonthlyStats(query: QueryModel): Observable<MonthlyStatsModel[]> {
+    const httpParams = new HttpParams().set('start', query.start).set('end', query.end);
+    return this.http.get<MonthlyStatsModel[]>(BASE_URL + '/transaction/stats/monthly', {
+      params: httpParams,
+    });
   }
 }

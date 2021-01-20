@@ -1,0 +1,31 @@
+<ion-content>
+  <div class="calculator">
+    <div class="display">{{ display }}</div>
+    <div class="calc-keys">
+      <div class="key operator" (click)="onClear()">C</div>
+      <div class="key operator" (click)="onBackspace()">←</div>
+      <div class="key operator" (click)="onOperatorClick('/')">/</div>
+      <div class="key operator" (click)="onOperatorClick('*')">*</div>
+
+      <div class="key" (click)="onNumberClick('7')">7</div>
+      <div class="key" (click)="onNumberClick('8')">8</div>
+      <div class="key" (click)="onNumberClick('9')">9</div>
+      <div class="key operator" (click)="onOperatorClick('-')">-</div>
+
+      <div class="key" (click)="onNumberClick('4')">4</div>
+      <div class="key" (click)="onNumberClick('5')">5</div>
+      <div class="key" (click)="onNumberClick('6')">6</div>
+      <div class="key operator" (click)="onOperatorClick('+')">+</div>
+
+      <div class="key" (click)="onNumberClick('1')">1</div>
+      <div class="key" (click)="onNumberClick('2')">2</div>
+      <div class="key" (click)="onNumberClick('3')">3</div>
+      <div class="key operator" (click)="onCalculate()">=</div>
+
+
+      <div class="key" (click)="onDot()">.</div>
+      <div class="key" (click)="onNumberClick('0')">0</div>
+      <div class="key done" (click)="onDone()">Done</div>
+    </div>
+  </div>
+</ion-content>

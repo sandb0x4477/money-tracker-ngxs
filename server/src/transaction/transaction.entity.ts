@@ -1,9 +1,7 @@
 import { Column, Entity, Index, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
-import { Account } from '../account/account.entity';
 import { NumericTransformer } from '../shared/numeric.transformer';
 import { Category } from '../category/category.entity';
-// import { Categories } from "./Categories";
 
 @Index('transaction_id_uindex', ['id'], { unique: true })
 @Index('transaction_pk', ['id'], { unique: true })
@@ -32,25 +30,11 @@ export class Transaction {
   @Column('character varying', { name: 'memo', nullable: true, length: 80 })
   memo: string | null;
 
-  @Column({ name: 'account_id' })
-  accountId: number;
-
   @Column({ name: 'category_id' })
   categoryId: number;
 
   @Column({ name: 'sub_category_id', nullable: true })
   subCategoryId: number | null;
-
-  @ManyToOne(
-    () => Account,
-    account => account.transactions,
-    {
-      onDelete: 'SET NULL',
-      eager: false,
-    },
-  )
-  @JoinColumn([{ name: 'account_id', referencedColumnName: 'id' }])
-  account: Account;
 
   @ManyToOne(
     () => Category,

@@ -8,10 +8,10 @@ const routes: Routes = [
     path: '',
     component: TabsPage,
     children: [
-      // {
-      //   path: 'trans',
-      //   loadChildren: () => import('../transactions/transactions.module').then(m => m.TransactionsPageModule),
-      // },
+      {
+        path: 'trans',
+        loadChildren: () => import('../transactions/transactions.module').then(m => m.TransactionsPageModule),
+      },
       // {
       //   path: 'stats',
       //   loadChildren: () => import('../stats/stats.module').then(m => m.StatsPageModule),
@@ -20,14 +20,13 @@ const routes: Routes = [
         path: 'settings',
         loadChildren: () => import('../settings/settings.module').then(m => m.SettingsPageModule),
       },
-      // {
-      //   path: 'test',
-      //   loadChildren: () => import('../test/test.module').then(m => m.TestPageModule),
-      // },
-
+      {
+        path: 'test',
+        loadChildren: () => import('../test/test.module').then(m => m.TestPageModule),
+      },
       {
         path: '',
-        redirectTo: 'settings',
+        redirectTo: 'trans',
         pathMatch: 'full',
       },
     ],

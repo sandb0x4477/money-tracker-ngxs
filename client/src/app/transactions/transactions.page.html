@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Transactions</ion-title>
+    <ng-container *ngIf="allDates$ | async as dates">
+      <ion-buttons slot="end">
+        <ion-button (click)="prev(dates)">
+          <ion-icon slot="icon-only" name="chevron-back"></ion-icon>
+        </ion-button>
+
+        <ng-container *ngIf="menuValue === 'daily'">
+          <ion-button class="btn-select" size="small" (click)="presentPopover($event, dates.dateTrans)"
+            >{{dates.dateTrans | date: 'MMM yyyy' }}</ion-button
+          >
+        </ng-container>
+
+        <ng-container *ngIf="menuValue === 'calendar'">
+          <ion-button class="btn-select" size="small" (click)="presentPopover($event, dates.dateTrans)"
+            >{{dates.dateTrans | date: 'MMM yyyy' }}</ion-button
+          >
+        </ng-container>
+
+        <ng-container *ngIf="menuValue === 'monthly'">
+          <ion-button class="btn-select" size="small" (click)="presentPopover($event, dates.dateMonthly)"
+            >{{dates.dateMonthly | date: 'yyyy' }}</ion-button
+          >
+        </ng-container>
+
+        <ng-container *ngIf="menuValue === 'budget'">
+          <ion-button class="btn-select" size="small" (click)="presentPopover($event, dates.dateBudget)"
+            >{{dates.dateBudget | date: 'MMM yyyy' }}</ion-button
+          >
+        </ng-container>
+
+        <ion-button (click)="next(dates)">
+          <ion-icon slot="icon-only" name="chevron-forward"></ion-icon>
+        </ion-button>
+
+      </ion-buttons>
+    </ng-container>
+  </ion-toolbar>
+
+  <ion-segment class="segment" (ionChange)="segmentChanged($event)" color="secondary" value="daily">
+    <ion-segment-button value="daily">
+      <ion-label>Daily</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="calendar">
+      <ion-label>Calendar</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="monthly">
+      <ion-label>Monthly</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="budget">
+      <ion-label>Budget
+      </ion-label>
+    </ion-segment-button>
+  </ion-segment>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-router-outlet></ion-router-outlet>
+</ion-content>

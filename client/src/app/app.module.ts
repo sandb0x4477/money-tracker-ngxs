@@ -6,6 +6,7 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
+import { NgxsSelectSnapshotModule } from '@ngxs-labs/select-snapshot';
 
 import { environment } from '../environments/environment';
 
@@ -25,6 +26,7 @@ import { States } from './store';
     NgxsModule.forRoot(States, {
       developmentMode: !environment.production,
     }),
+    NgxsSelectSnapshotModule.forRoot(),
     // NgxsStoragePluginModule.forRoot(),
     NgxsReduxDevtoolsPluginModule.forRoot({
       name: 'Money Tracker NGXS',

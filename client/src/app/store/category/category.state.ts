@@ -15,9 +15,7 @@ import {
 
 const categoryStateDefaults: CategoryModel[] = null;
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 @State<CategoryModel[]>({
   name: 'categories',
   defaults: categoryStateDefaults,
@@ -31,7 +29,7 @@ export class CategoryState implements NgxsOnInit {
 
   @Selector()
   public static categories(state: CategoryModel[]) {
-    return _orderBy(state, ['sequence'], ['asc']).filter(a => a.deleted === false);
+    return _orderBy(state, ['sequence'], ['asc']);
   }
 
   @Selector()
@@ -86,7 +84,6 @@ export class CategoryState implements NgxsOnInit {
     );
   }
 
-
   @Action(REMOVE_CATEGORY, { cancelUncompleted: true })
   public removeCategory({ setState, getState }: StateContext<CategoryModel[]>, { payload }: REMOVE_CATEGORY) {
     return this.apiService.removeCategory(payload).pipe(
@@ -100,11 +97,8 @@ export class CategoryState implements NgxsOnInit {
     );
   }
 
-
   @Action(REORDER_CATEGORIES, { cancelUncompleted: true })
   public reorderCategories({ setState }: StateContext<CategoryModel[]>, { payload }: REORDER_CATEGORIES) {
-    return this.apiService.reorderCategories(payload).pipe(
-      tap(cats => setState(cats)),
-    );
+    return this.apiService.reorderCategories(payload).pipe(tap(cats => setState(cats)));
   }
 }

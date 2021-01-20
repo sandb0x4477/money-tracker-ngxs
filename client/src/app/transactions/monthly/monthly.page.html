@@ -1,0 +1,51 @@
+<ion-content>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="secondary" (click)="newTrans()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ng-container *ngIf="monthlyStatsTotals$ | async as data">
+    <div class="inc-exp-total">
+      <div class="inc-exp-total-column">
+        <div class="inc-exp-total-column-text">
+          Income
+        </div>
+        <div class="inc-exp-total-column-number income">
+          {{data.yearlyIncome | number: '1.2-2' }}
+        </div>
+      </div>
+
+      <div class="inc-exp-total-column">
+        <div class="inc-exp-total-column-text">
+          Expenses
+        </div>
+        <div class="inc-exp-total-column-number expense">
+          {{data.yearlyExpense | number: '1.2-2' }}
+        </div>
+      </div>
+
+      <div class="inc-exp-total-column">
+        <div class="inc-exp-total-column-text">
+          Total
+        </div>
+        <div class="inc-exp-total-column-number">
+          {{data.yearlyIncome - data.yearlyExpense | number: '1.2-2' }}
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="monthlyStats$ | async as data">
+    <ng-container *ngFor="let item of data">
+      <div class="container">
+        <div class="month">{{item.month}}</div>
+        <div class="income">{{item.incomeTotal | number: '1.2-2'}}</div>
+        <div class="expense">{{item.expenseTotal | number: '1.2-2'}}</div>
+        <div class="diffrence">{{item.incomeTotal - item.expenseTotal | number: '1.2-2'}}</div>
+      </div>
+    </ng-container>
+
+    <app-monthly-bar-chart [data]="data"></app-monthly-bar-chart>
+  </ng-container>
+  <div class="dummy"></div>
+</ion-content>

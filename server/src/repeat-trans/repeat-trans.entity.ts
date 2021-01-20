@@ -1,7 +1,6 @@
 import { Column, Entity, Index, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 import { NumericTransformer } from '../shared/numeric.transformer';
-import { Account } from '../account/account.entity';
 import { Category } from '../category/category.entity';
 
 @Index('repeat_pk', ['id'], { unique: true })
@@ -38,20 +37,6 @@ export class RepeatTrans {
 
   @Column('date', { name: 'next_date' })
   nextDate: string;
-
-  @Column({ name: 'account_id' })
-  accountId: number;
-
-  @ManyToOne(
-    () => Account,
-    account => account.repeats,
-    {
-      onDelete: 'SET NULL',
-      eager: false,
-    },
-  )
-  @JoinColumn([{ name: 'account_id', referencedColumnName: 'id' }])
-  account: Account;
 
   @Column({ name: 'category_id' })
   categoryId: number;

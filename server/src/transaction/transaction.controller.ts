@@ -8,7 +8,7 @@ import { User } from '../user/user.decorator';
 import { UserEntity } from '../user/user.entity';
 
 @Controller('transaction')
-@UseGuards(AuthGuard)
+// @UseGuards(AuthGuard)
 export class TransactionController {
   constructor(private transactionService: TransactionService) {}
 

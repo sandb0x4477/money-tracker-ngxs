@@ -8,6 +8,20 @@ const routes: Routes = [
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule),
   },
   {
+    path: 'edit',
+    // canActivate: [AuthGuard],
+    loadChildren: () => import('./editnew/edit-trans/edit-trans.module').then(m => m.EditTransPageModule),
+  },
+  {
+    path: 'new',
+    // canActivate: [AuthGuard],
+    loadChildren: () => import('./editnew/new-trans/new-trans.module').then(m => m.NewTransPageModule),
+  },
+  {
+    path: 'test',
+    loadChildren: () => import('./test/test.module').then(m => m.TestPageModule),
+  },
+  {
     path: '',
     redirectTo: 'app',
     pathMatch: 'full',

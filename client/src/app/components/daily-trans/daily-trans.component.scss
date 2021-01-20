@@ -1,0 +1,86 @@
+// !Header
+.card-header {
+  display: grid;
+  grid-template-columns: 0.7fr 1.3fr 1fr 1fr 1fr;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+  padding: 2px 12px;
+  color: var(--ion-text-color);
+
+  :nth-child(1) {
+    justify-self: center;
+    padding-right: 18px;
+    // text-align: left;
+    // justify-self: center;
+    font-size: 1.8em;
+    // text-decoration: underline;
+
+    &.isSunday {
+      color: #ff5757;
+    }
+  }
+
+  :nth-child(2) {
+    text-align: left;
+    font-size: 0.8em;
+
+    &.isSunday {
+      color: #ff5757;
+    }
+  }
+
+  :nth-child(3) {
+    font-size: 0.8em;
+    text-align: left;
+  }
+
+  :nth-child(4) {
+    color: #016fa1;
+    text-align: right;
+  }
+
+  :nth-child(5) {
+    color: #ff5757;
+    text-align: right;
+  }
+}
+
+//  ! Transaction
+.card-transaction {
+  display: grid;
+  grid-template-columns: 2fr 2fr 1fr;
+  grid-auto-rows: 30px;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 0.86em;
+  color: var(--ion-text-color);
+
+  & div {
+    & p {
+      margin: 0.15em 0;
+
+      &:nth-child(2) {
+        font-size: 0.84em;
+      }
+    }
+  }
+
+  &:hover {
+    background-color: #dadada;
+  }
+
+  :nth-child(3) {
+    color: #ff5757;
+    text-align: right;
+
+    &.isIncome {
+      color: #016fa1;
+    }
+  }
+}
+
+.is-today {
+  background-color:  #bbdff0;
+}

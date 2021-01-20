@@ -2,19 +2,25 @@
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-button (click)="goBack()">
-        <ion-icon  slot="icon-only" name="arrow-back"></ion-icon>
+        <ion-icon slot="icon-only"
+                  name="arrow-back"></ion-icon>
       </ion-button>
     </ion-buttons>
     <ion-title>Main Categories</ion-title>
     <ion-buttons slot="primary">
-      <ion-button *ngIf="!reorderMode" (click)="switchReorderMode()">
-        <ion-icon slot="icon-only" name="swap-vertical"></ion-icon>
+      <ion-button *ngIf="!reorderMode"
+                  (click)="switchReorderMode()">
+        <ion-icon slot="icon-only"
+                  name="swap-vertical"></ion-icon>
       </ion-button>
-      <ion-button *ngIf="reorderMode" (click)="switchReorderMode()">
-        <ion-icon slot="icon-only" name="pencil"></ion-icon>
+      <ion-button *ngIf="reorderMode"
+                  (click)="switchReorderMode()">
+        <ion-icon slot="icon-only"
+                  name="pencil"></ion-icon>
       </ion-button>
       <ion-button (click)="addNewInModal()">
-        <ion-icon slot="icon-only" name="add"></ion-icon>
+        <ion-icon slot="icon-only"
+                  name="add"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -30,15 +36,21 @@
 
     <!-- ! EXPENSE -->
     <ng-container *ngIf="catsExpense$ | async as catsExpense">
-      <ion-reorder-group (ionItemReorder)="doReorder($event, catsExpense)" [disabled]="!reorderMode">
+      <ion-reorder-group (ionItemReorder)="doReorder($event, catsExpense)"
+                         [disabled]="!reorderMode">
         <ng-container *ngFor="let item of catsExpense; let i=index">
-          <ion-item detail lines="full" button>
+          <ion-item detail
+                    lines="full"
+                    button>
             <ion-label [routerLink]="['sub', item.id]">
               {{item.name}} <span class="sub-count">({{ item.subCount}})</span>
             </ion-label>
             <ion-buttons>
-              <ion-button class="btn-icon" *ngIf="!reorderMode" (click)="editInModal(item)">
-                <ion-icon slot="icon-only" name="pencil"></ion-icon>
+              <ion-button class="btn-icon"
+                          *ngIf="!reorderMode"
+                          (click)="editInModal(item)">
+                <ion-icon slot="icon-only"
+                          name="pencil"></ion-icon>
               </ion-button>
             </ion-buttons>
             <ion-reorder slot="end"></ion-reorder>
@@ -55,15 +67,21 @@
 
     <!-- ! INCOME -->
     <ng-container *ngIf="catsIncome$ | async as catsIncome">
-      <ion-reorder-group (ionItemReorder)="doReorder($event, catsIncome)" [disabled]="!reorderMode">
+      <ion-reorder-group (ionItemReorder)="doReorder($event, catsIncome)"
+                         [disabled]="!reorderMode">
         <ng-container *ngFor="let item of catsIncome; let i=index">
-          <ion-item detail lines="full" button>
+          <ion-item detail
+                    lines="full"
+                    button>
             <ion-label [routerLink]="['sub', item.id]">
               {{item.name}} <span class="sub-count">({{ item.subCount}})</span>
             </ion-label>
             <ion-buttons>
-              <ion-button class="btn-icon" *ngIf="!reorderMode" (click)="editInModal(item)">
-                <ion-icon slot="icon-only" name="pencil"></ion-icon>
+              <ion-button class="btn-icon"
+                          *ngIf="!reorderMode"
+                          (click)="editInModal(item)">
+                <ion-icon slot="icon-only"
+                          name="pencil"></ion-icon>
               </ion-button>
             </ion-buttons>
             <ion-reorder slot="end"></ion-reorder>

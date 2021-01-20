@@ -1,0 +1,108 @@
+.container {
+  // padding: 12px;
+  margin: 12px;
+}
+
+.selectmonth-container {
+  display: grid;
+  grid-template-columns: 50px auto 50px;
+  justify-content: space-between;
+  //background-color: #f6fff4;
+  padding: 0.5rem;
+  //margin-top: 12px;
+
+  .chevron {
+    text-align: center;
+    cursor: pointer;
+  }
+}
+
+.days-of-week {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  justify-content: center;
+  justify-items: center;
+  margin-top: 6px;
+  // border: 1px solid var(--border-color);
+  // margin: 6px 6px 0px 6px;
+  border-bottom: none;
+  :nth-of-type(7) {
+    color: #ff5757;
+  }
+}
+
+.week-day {
+  // text-transform: uppercase;
+  // font-weight: 400;
+  // color: var(--text-color-light);
+  // font-size: 70%;
+  font-size: 0.65em;
+  // padding: .55em 0;
+  // border-right: 1px solid var(--border-color);
+}
+
+.day-cells {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-auto-rows:    40px;
+  justify-content: center;
+  // justify-items: center;
+  // grid-gap: 6px;
+  margin-top: 12px;
+  margin-bottom: 6px;
+  & > div {
+    cursor: pointer;
+    padding: 6px;
+    place-items: center;
+    display: inline-grid;
+
+    &.cellDisabled {
+      //background: #f1f1f1;
+      opacity: 0.5;
+      // pointer-events: none;
+    }
+
+    &.isSunday {
+      color: #ff5757;
+    }
+
+    &.isToday {
+      color: var(--ion-color-secondary-shade);
+      // margin: 0;
+      // padding: 6px;
+      text-decoration: underline;
+      // border-radius: 50%;
+      // background: var(--ion-color-medium);
+    }
+
+    &.isSelected {
+      color: var(--ion-color-secondary-contrast);
+      // display: inline-grid;
+      // place-items: center;
+      // margin: 0;
+      // margin: 0;
+      // padding: 6px;
+      // text-decoration: underline;
+      border-radius: 50%;
+      background: var(--ion-color-secondary);
+    }
+  }
+}
+
+.buttons-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-content: space-evenly;
+  padding: 0.5rem;
+  // border-top: 1px solid black;
+  // color: white;
+  // background-color: var(--ion-color-primary-tint);
+  margin-top: 6px;
+  //background-color: #f6fff4;
+
+  div {
+    font-size: 1em;
+    text-align: center;
+    cursor: pointer;
+  }
+}

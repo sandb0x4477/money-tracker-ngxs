@@ -6,26 +6,41 @@
 
 <ion-content>
   <ion-list>
-    <ion-item detail lines="full" button routerLink="/app/settings/account" routerDirection="forward">
-      Accounts
-    </ion-item>
-    <ion-item detail lines="full" button routerLink="/app/settings/category" routerDirection="forward">
+    <ion-item detail
+              lines="full"
+              button
+              routerLink="/app/settings/category"
+              routerDirection="forward">
       Categories
     </ion-item>
-    <ion-item detail lines="full" button routerLink="/app/settings/repeat" routerDirection="forward">
+    <ion-item detail
+              lines="full"
+              button
+              routerLink="/app/settings/repeat"
+              routerDirection="forward">
       Repeat Transactions
     </ion-item>
-    <ion-item detail lines="full" button routerLink="/app/settings/theme" routerDirection="forward"
-      >Theme</ion-item
-    >
+    <ion-item detail
+              lines="full"
+              button
+              routerLink="/app/settings/theme"
+              routerDirection="forward">Theme</ion-item>
     <ion-item>
       <ion-label>Notifications</ion-label>
-        <ion-toggle [checked]="checked" color="primary" (ionChange)="onNotificationChange($event)"></ion-toggle>
+      <ion-toggle [checked]="checked"
+                  color="primary"
+                  (ionChange)="onNotificationChange($event)"></ion-toggle>
     </ion-item>
-    <ion-item detail lines="full" button routerLink="/login" routerDirection="forward">Login</ion-item>
-    <ion-item lines="full" button (click)="logout()">Logout</ion-item>
-    <ion-item lines="full" button (click)="reload()">Reload</ion-item>
+    <ion-item detail
+              lines="full"
+              button
+              routerLink="/login"
+              routerDirection="forward">Login</ion-item>
+    <ion-item lines="full"
+              button
+              (click)="logout()">Logout</ion-item>
+    <ion-item lines="full"
+              button
+              (click)="reload()">Reload</ion-item>
   </ion-list>
-
-  <!-- {{notification$ | async | json}} -->
 </ion-content>

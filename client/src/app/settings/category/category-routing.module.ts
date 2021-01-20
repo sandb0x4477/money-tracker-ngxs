@@ -8,10 +8,10 @@ const routes: Routes = [
     path: '',
     component: CategoryPage
   },
-  // {
-  //   path: 'sub/:id',
-  //   loadChildren: () => import('./subcategory/subcategory.module').then( m => m.SubcategoryPageModule)
-  // }
+  {
+    path: 'sub/:id',
+    loadChildren: () => import('./subcategory/subcategory.module').then( m => m.SubcategoryPageModule)
+  }
 
 ];
 
